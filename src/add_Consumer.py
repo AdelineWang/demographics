@@ -59,11 +59,8 @@ def addFacialInsights(uuid, path):
 
 
     age, gender = get_age_gender(path)
-    print("5555555")
     emotion = get_Insights(path)
-    print("666666")
     race_ = predict_ethnic(path)
-    print("77777")
     race = ETHNIC[np.argmax(race_)]
 
     one_insight = {'age':age, 'gender':gender, 'emotion':emotion, 'ethnicity': race}
