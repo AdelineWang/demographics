@@ -65,7 +65,6 @@ def eval_(age, gender, sess, aligned_images, model_path, images_pl, train_mode):
  
 
 def load_image(image_path, shape_predictor):
-        print("1111111")
         detector = dlib.get_frontal_face_detector()
         predictor = dlib.shape_predictor(shape_predictor)
         fa = FaceAligner(predictor, desiredFaceWidth=160)
@@ -78,7 +77,6 @@ def load_image(image_path, shape_predictor):
         rects = detector(gray, 2)
         rect_nums = len(rects)
 
-        print("22222")
 
         XY, aligned_images = [], []
         if rect_nums == 0:
@@ -95,7 +93,6 @@ def load_image(image_path, shape_predictor):
             arr = str(np.array(aligned_images))
             image_ = str(image)
             rect_nums_ = str(rect_nums)
-            print("33333")
             return np.array(aligned_images), image, rect_nums, XY
 
 
@@ -123,8 +120,6 @@ def get_age_gender(image):
     train_mode = train_mode_saved
     age = age_saved
     gender = gender_saved
-
-    print("444444")
 
     sess.run(tf.global_variables_initializer())
     age, gender = sess.run([age, gender], feed_dict={images_pl: aligned_image, train_mode:False})
